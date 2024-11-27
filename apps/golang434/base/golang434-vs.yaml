@@ -1,0 +1,21 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: golang434-vs
+  namespace: golang434
+  labels:
+    app: golang434
+    version: 0.0.1
+    backstage.io/kubernetes-id: golang434
+spec:
+  gateways:
+  - istio-system/istio-ingressgateway
+  hosts:
+  - golang434.diegoluisi.eti.br
+  http:
+  - name: primary
+    route:
+    - destination:
+        host: golang434-svc
+      weight: 100
